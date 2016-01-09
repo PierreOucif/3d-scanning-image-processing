@@ -1,0 +1,30 @@
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\bin\Debug\Chargement jpeg.exe
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\bin\Debug\Chargement jpeg.pdb
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\bin\Debug\Chargement jpeg.xml
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\obj\x86\Debug\Chargement_jpeg.Form1.resources
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\obj\x86\Debug\Chargement_jpeg.Resources.resources
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\obj\x86\Debug\Chargement jpeg.vbproj.GenerateResource.Cache
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\obj\x86\Debug\Chargement jpeg.exe
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\obj\x86\Debug\Chargement jpeg.xml
+C:\Users\Admetienne\AppData\Local\Temporary Projects\Chargement jpeg\obj\x86\Debug\Chargement jpeg.pdb
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.exe
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.xml
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.pdb
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\bin\Debug\Chargement jpeg.exe
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\bin\Debug\Chargement jpeg.pdb
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\bin\Debug\Chargement jpeg.xml
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement_jpeg.Form1.resources
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement_jpeg.Resources.resources
+C:\Users\Admetienne\documents\visual studio 2010\Projects\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.vbproj.GenerateResource.Cache
+C:\Users\Ilysse\Desktop\Computer Sciences\Projet Sysin\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.exe
+C:\Users\Ilysse\Desktop\Computer Sciences\Projet Sysin\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.xml
+C:\Users\Ilysse\Desktop\Computer Sciences\Projet Sysin\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.pdb
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.exe
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.xml
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.pdb
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\bin\Debug\Chargement jpeg.exe
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\bin\Debug\Chargement jpeg.pdb
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\bin\Debug\Chargement jpeg.xml
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement_jpeg.Form1.resources
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement_jpeg.Resources.resources
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Chargement jpeg\Chargement jpeg\Chargement jpeg\obj\x86\Debug\Chargement jpeg.vbproj.GenerateResource.Cache
