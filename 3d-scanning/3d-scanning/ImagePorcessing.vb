@@ -3,13 +3,14 @@
     Dim dll As New DimensionnementImage.GestionImage
     Dim Drawing As Graphics
     Dim BlackPen As New Pen(Color.Black)
+    Dim RedThreshold As Integer = 230
+    Dim GBThreshold As Integer = 200
 
     Public Function LaserRecognitionBitMap(ByVal image(,) As Color)
-        Dim threshold As Integer = 240
         Dim imagetoget = New Bitmap(image.GetLength(0), image.GetLength(1))
         For i As Integer = 0 To image.GetLength(0) - 1
             For j As Integer = 0 To image.GetLength(1) - 1
-                If (image(i, j).R / 3 + image(i, j).G / 3 + image(i, j).B / 3) >= threshold Then
+                If image(i, j).R >= RedThreshold And image(i, j).G >= GBThreshold And image(i, j).B >= GBThreshold Then
                     imagetoget.SetPixel(i, j, Color.White)
                 Else : imagetoget.SetPixel(i, j, Color.Black)
                 End If
@@ -18,10 +19,9 @@
         Return imagetoget
     End Function
     Public Function LaserRecognitionColor(ByVal image(,) As Color)
-        Dim threshold As Integer = 230
         For i As Integer = 0 To image.GetLength(0) - 1
             For j As Integer = 0 To image.GetLength(1) - 1
-                If (image(i, j).R / 3 + image(i, j).G / 3 + image(i, j).B / 3) >= threshold Then
+                If image(i, j).R >= RedThreshold And image(i, j).G >= GBThreshold And image(i, j).B >= GBThreshold Then
                     image(i, j) = Color.White
                 Else : image(i, j) = Color.Black
                 End If
@@ -51,7 +51,7 @@
             Dim SizeSegment As Integer = 0
             Dim y_average As Integer = 0
 
-            For i As Integer = Area(0, 0) To Area(0, 1)
+            For i As Integer = Area(0, 0) + 1 To Area(0, 1)
                 If image(i, j) = Color.White Then
                     y_average = y_average + i
                     SizeSegment = SizeSegment + 1
@@ -83,10 +83,10 @@
     End Function
     Public Function TableOfPoints(ByVal image(,) As Color)
         Dim Area(1, 1) As Integer
-        Area(0, 0) = 150
-        Area(0, 1) = 350
-        Area(1, 0) = 50
-        Area(1, 1) = 350
+        Area(0, 0) = 0
+        Area(0, 1) = image.GetLength(0) - 1
+        Area(1, 0) = 0
+        Area(1, 1) = image.GetLength(1) - 1
         Dim Pixel(,) As Double = SubPixel(image, Area)
         Dim Table(Pixel.GetLength(0) - 1) As Point
 
@@ -95,11 +95,12 @@
         Next
         Return Table
     End Function
+   
     Function GenererMatriceFromJPGFastOne(ByVal Path As String) As Color(,)
         Dim imageaanalyser = New Bitmap(Path)
         Dim Matrice(imageaanalyser.Width - 1, imageaanalyser.Height - 1) As Color
         Dim rect As New Rectangle(0, 0, imageaanalyser.Width, imageaanalyser.Height)
-        Dim bmpData As System.Drawing.Imaging.BitmapData = imageaanalyser.LockBits(rect, Drawing.Imaging.ImageLockMode.ReadOnly, imageaanalyser.PixelFormat)
+        Dim bmpData As System.Drawing.Imaging.BitmapData = imageaanalyser.LockBits(rect, System.Drawing.Imaging.ImageLockMode.ReadOnly, imageaanalyser.PixelFormat)
         Dim ptr As IntPtr = bmpData.Scan0
 
 
@@ -127,17 +128,18 @@
 
         Return Matrice
     End Function
-    Public Sub AfficherImage(ByRef TextBox As TextBox, ByRef PictureBoxImage As PictureBox, ByRef PictureBoxBW As PictureBox, ByRef PictureBoxDrawing As PictureBox)
+    Public Function AfficherImage(ByRef TextBox As TextBox, ByRef PictureBoxImage As PictureBox, ByRef PictureBoxBW As PictureBox, ByRef PictureBoxDrawing As PictureBox)
         ' Test de l'existance du fichier proposé
         Dim Path As String = TextBox.Text
         Dim SquareSize As Integer = 250
+        Dim ImageAAnalyser(,) As Color = Nothing
+        Dim ImageAAfficher(,) As Color = Nothing
         If IO.File.Exists(Path) Then
             ' Instantiation du chrono pour comparaisons
 
-            Dim ImageAAnalyser(,) As Color = Nothing
-            Dim ImageAAfficher(,) As Color = Nothing
+            
             ImageAAnalyser = GenererMatriceFromJPGFastOne(Path)
-            ImageAAfficher = dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAfficher)
+            ImageAAfficher = dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser)
             If Not (ImageAAnalyser Is Nothing) Then
                 ' Format and display the TimeSpan value.
 
@@ -151,12 +153,31 @@
                 Next
 
                 PictureBoxImage.Image = image
-                PictureBoxBW.Image = LaserRecognitionBitMap(ImageAAnalyser)
+                PictureBoxBW.Image = LaserRecognitionBitMap(dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser))
                 Drawing = PictureBoxDrawing.CreateGraphics
-                Drawing.DrawLines(BlackPen, TableOfPoints(LaserRecognitionColor(ImageAAfficher)))
+                Drawing.DrawLines(BlackPen, TableOfPoints(LaserRecognitionColor(dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser))))
             End If
         Else
             MsgBox("Problème : le fichier à lire n'existe pas ! A vérifier")
         End If
-    End Sub
+        Return ImageAAnalyser
+    End Function
+    Public Function FindCentroid(ByVal image(,) As Color)
+        Dim centroid(1) As Double
+        Dim Area(1, 1) As Integer
+        Dim nb As Double = 0
+        Area(0, 0) = 0
+        Area(0, 1) = image.GetLength(0) - 1
+        Area(1, 0) = 0
+        Area(1, 1) = image.GetLength(1) - 1
+        Dim table(,) As Double = SubPixel(image, Area)
+        For i As Integer = 0 To table.GetLength(0) - 1
+            centroid(0) += table(i, 0)
+            centroid(1) += table(i, 0)
+            nb += 1
+        Next
+        centroid(0) /= nb
+        centroid(1) /= nb
+        Return centroid
+    End Function
 End Class

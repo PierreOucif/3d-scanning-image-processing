@@ -4,14 +4,14 @@
     Dim Drawing As Graphics
     Dim BlackPen As New Pen(Color.Black)
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
-        ImagePorcessing.AfficherImage(TextBox1, PictureBox1, PictureBox2, PictureBox3)
+        Dim ImagePoints(,) As Color = ImagePorcessing.AfficherImage(TextBox1, PictureBox1, PictureBox2, PictureBox3)
     End Sub
     
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
-        ImagePorcessing.AfficherImage(TextBox2, PictureBox4, PictureBox5, PictureBox6)
+        Dim RefPoints(,) As Color = ImagePorcessing.AfficherImage(TextBox2, PictureBox4, PictureBox5, PictureBox6)
+        Dim RefCentroid() As Double = ImagePorcessing.FindCentroid(RefPoints)
     End Sub
-
- 
+  
 End Class
 
