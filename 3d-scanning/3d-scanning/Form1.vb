@@ -10,8 +10,18 @@
 
     Private Sub Button2_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button2.Click
         Dim RefPoints(,) As Color = ImagePorcessing.AfficherImage(TextBox2, PictureBox4, PictureBox5, PictureBox6)
-        Dim RefCentroid() As Double = ImagePorcessing.FindCentroid(RefPoints)
     End Sub
   
+    Private Sub Button3_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button3.Click
+        Dim Threshold(3) As Integer
+        Threshold(0) = CInt(TextBox9.Text)
+        Threshold(1) = CInt(TextBox10.Text)
+        Threshold(2) = CInt(TextBox11.Text)
+        Threshold(3) = CInt(TextBox4.Text)
+        Dim RefPoints(,) As Color = ImagePorcessing.AfficherImageWithThreshold(TextBox2, PictureBox4, PictureBox5, PictureBox6, Threshold)
+        Dim RefCentroid() As Double = ImagePorcessing.FindCentroid(RefPoints)
+    End Sub
+
+
 End Class
 

@@ -1,16 +1,14 @@
 ﻿Public Class ImagePorcessing
 
     Dim dll As New DimensionnementImage.GestionImage
-    Dim Drawing As Graphics
     Dim BlackPen As New Pen(Color.Black, 2)
-    Dim RedThreshold As Integer = 250
-    Dim GBThreshold As Integer = 100
+
 
     Public Function LaserRecognitionBitMap(ByVal image(,) As Color)
         Dim imagetoget = New Bitmap(image.GetLength(0), image.GetLength(1))
         For i As Integer = 0 To image.GetLength(0) - 1
             For j As Integer = 0 To image.GetLength(1) - 1
-                If image(i, j).R >= RedThreshold Then
+                If (image(i, j).R / 3 + image(i, j).G / 3 + image(i, j).B / 3) >= 230 Then
                     imagetoget.SetPixel(i, j, Color.White)
                 Else : imagetoget.SetPixel(i, j, Color.Black)
                 End If
@@ -21,7 +19,7 @@
     Public Function LaserRecognitionColor(ByVal image(,) As Color)
         For i As Integer = 0 To image.GetLength(0) - 1
             For j As Integer = 0 To image.GetLength(1) - 1
-                If image(i, j).R >= RedThreshold Then
+                If (image(i, j).R / 3 + image(i, j).G / 3 + image(i, j).B / 3) >= 230 Then
                     image(i, j) = Color.White
                 Else : image(i, j) = Color.Black
                 End If
@@ -29,7 +27,30 @@
         Next
         Return image
     End Function
+    Public Function LaserRecognitionColorThreshold(ByVal image(,) As Color, ByRef Threshold() As Integer)
+        For i As Integer = 0 To image.GetLength(0) - 1
+            For j As Integer = 0 To image.GetLength(1) - 1
+                If image(i, j).R >= Threshold(0) And image(i, j).G <= Threshold(1) + Threshold(3) And image(i, j).G >= Threshold(1) - Threshold(3) And image(i, j).B <= Threshold(2) + Threshold(3) And image(i, j).B >= Threshold(2) - Threshold(3) Then
+                    image(i, j) = Color.White
+                Else : image(i, j) = Color.Black
+                End If
+            Next
+        Next
+        Return image
+    End Function
+    Public Function LaserRecognitionBitMapThreshold(ByVal image(,) As Color, ByRef Threshold() As Integer)
+        Dim imagetoget = New Bitmap(image.GetLength(0), image.GetLength(1))
 
+        For i As Integer = 0 To image.GetLength(0) - 1
+            For j As Integer = 0 To image.GetLength(1) - 1
+                If image(i, j).R >= Threshold(0) And image(i, j).G <= Threshold(1) + Threshold(3) And image(i, j).G >= Threshold(1) - Threshold(3) And image(i, j).B <= Threshold(2) + Threshold(3) And image(i, j).B >= Threshold(2) - Threshold(3) Then
+                    imagetoget.SetPixel(i, j, Color.White)
+                Else : imagetoget.SetPixel(i, j, Color.Black)
+                End If
+            Next
+        Next
+        Return imagetoget
+    End Function
     Private Function GetNbPixel(ByVal image(,) As Color)
         Dim NbPixel As Integer = 0
         For i As Integer = 0 To image.GetLength(0) - 1
@@ -130,6 +151,7 @@
     End Function
     Public Function AfficherImage(ByRef TextBox As TextBox, ByRef PictureBoxImage As PictureBox, ByRef PictureBoxBW As PictureBox, ByRef PictureBoxDrawing As PictureBox)
         ' Test de l'existance du fichier proposé
+        Dim Drawing As Graphics
         Dim Path As String = TextBox.Text
         Dim SquareSize As Integer = 250
         Dim ImageAAnalyser(,) As Color = Nothing
@@ -153,6 +175,38 @@
                 PictureBoxBW.Image = LaserRecognitionBitMap(dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser))
                 Drawing = PictureBoxDrawing.CreateGraphics
                 Drawing.DrawLines(BlackPen, TableOfPoints(LaserRecognitionColor(dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser))))
+            End If
+        Else
+            MsgBox("Problème : le fichier à lire n'existe pas ! A vérifier")
+        End If
+        Return ImageAAnalyser
+    End Function
+    Public Function AfficherImageWithThreshold(ByRef TextBox As TextBox, ByRef PictureBoxImage As PictureBox, ByRef PictureBoxBW As PictureBox, ByRef PictureBoxDrawing As PictureBox, ByRef Threshold() As Integer)
+        ' Test de l'existance du fichier proposé
+        Dim Drawing As Graphics
+        Dim Path As String = TextBox.Text
+        Dim SquareSize As Integer = 250
+        Dim ImageAAnalyser(,) As Color = Nothing
+        Dim ImageAAfficher(,) As Color = Nothing
+        If IO.File.Exists(Path) Then
+
+
+            ImageAAnalyser = GenererMatriceFromJPGFastOne(Path)
+            ImageAAfficher = dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser)
+            If Not (ImageAAnalyser Is Nothing) Then
+
+                Dim image = New Bitmap(ImageAAfficher.GetLength(0), ImageAAfficher.GetLength(1))
+
+                For colonne As Integer = 0 To PictureBoxImage.Width - 1
+                    For ligne As Integer = 0 To PictureBoxImage.Height - 1
+                        image.SetPixel(colonne, ligne, ImageAAfficher(colonne, ligne))
+                    Next
+                Next
+
+                PictureBoxImage.Image = image
+                PictureBoxBW.Image = LaserRecognitionBitMapThreshold(dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser), Threshold)
+                Drawing = PictureBoxDrawing.CreateGraphics
+                Drawing.DrawLines(BlackPen, TableOfPoints(LaserRecognitionColorThreshold(ImageAAfficher, Threshold)))
             End If
         Else
             MsgBox("Problème : le fichier à lire n'existe pas ! A vérifier")
