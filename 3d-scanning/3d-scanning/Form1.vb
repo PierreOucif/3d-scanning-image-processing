@@ -1,7 +1,10 @@
 ﻿Public Class Form1
-
+    
     Private Sub Button1_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button1.Click
         Dim ImagePorcessing As New ImagePorcessing
+        Dim dll As New DimensionnementImage.GestionImage
+        Dim Drawing As Graphics
+        Dim BlackPen As New Pen(Color.Black)
         ' Test de l'existance du fichier proposé
         Dim Path As String = TextBox1.Text
         If IO.File.Exists(Path) Then
@@ -11,17 +14,9 @@
 
 
             stopWatch.Start()
-            Select Case ComboBox1.SelectedIndex
-                Case 0 ' Méthode GetPixel : très lente
-                    ImageAAnalyser = GenererMatriceFromJPGSlowOne(Path)
+            ImageAAnalyser = GenererMatriceFromJPGFastOne(Path)
 
-                Case 1 ' Méthode lecture en mémoire : plus rapide
-                    ImageAAnalyser = GenererMatriceFromJPGFastOne(Path)
-
-                Case Else
-                    MsgBox("Problème dans la sélection de la méthode")
-
-            End Select
+                
             stopWatch.Stop()
 
             If Not (ImageAAnalyser Is Nothing) Then
@@ -39,12 +34,15 @@
                 Next
 
                 Me.PictureBox1.Image = image
-                Me.PictureBox2.Image = ImagePorcessing.LaserRecognition(ImageAAnalyser)
+                Me.PictureBox2.Image = ImagePorcessing.LaserRecognitionBitMap(dll.agrandissementaupproche(500, 500, ImageAAnalyser))
+                Drawing = PictureBox3.CreateGraphics
+                Drawing.DrawLines(BlackPen, ImagePorcessing.TableOfPoints(ImagePorcessing.LaserRecognitionColor(dll.agrandissementaupproche(500, 500, ImageAAnalyser))))
             End If
         Else
             MsgBox("Problème : le fichier à lire n'existe pas ! A vérifier")
         End If
 
+        
 
     End Sub
 
@@ -103,5 +101,6 @@
 
         Return Matrice
     End Function
+
 End Class
 

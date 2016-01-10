@@ -7,3 +7,13 @@ C:\Users\Ilysse\Desktop\Birse\VB\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanni
 C:\Users\Ilysse\Desktop\Birse\VB\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.exe
 C:\Users\Ilysse\Desktop\Birse\VB\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.xml
 C:\Users\Ilysse\Desktop\Birse\VB\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.pdb
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.exe
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.xml
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.pdb
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\bin\Debug\3d-scanning.exe
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\bin\Debug\3d-scanning.pdb
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\bin\Debug\3d-scanning.xml
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.vbprojResolveAssemblyReference.cache
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\_3d_scanning.Form1.resources
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\_3d_scanning.Resources.resources
+C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\3d-scanning\3d-scanning\obj\x86\Debug\3d-scanning.vbproj.GenerateResource.Cache
