@@ -27,6 +27,8 @@ Partial Class Form1
         Me.PictureBox1 = New System.Windows.Forms.PictureBox()
         Me.PictureBox2 = New System.Windows.Forms.PictureBox()
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
+        Me.Button2 = New System.Windows.Forms.Button()
+        Me.TextBox2 = New System.Windows.Forms.TextBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -61,23 +63,43 @@ Partial Class Form1
         '
         Me.PictureBox2.Location = New System.Drawing.Point(95, 133)
         Me.PictureBox2.Name = "PictureBox2"
-        Me.PictureBox2.Size = New System.Drawing.Size(375, 335)
+        Me.PictureBox2.Size = New System.Drawing.Size(461, 467)
         Me.PictureBox2.TabIndex = 4
         Me.PictureBox2.TabStop = False
         '
         'PictureBox3
         '
-        Me.PictureBox3.Location = New System.Drawing.Point(504, 134)
+        Me.PictureBox3.Location = New System.Drawing.Point(573, 123)
         Me.PictureBox3.Name = "PictureBox3"
-        Me.PictureBox3.Size = New System.Drawing.Size(435, 333)
+        Me.PictureBox3.Size = New System.Drawing.Size(676, 477)
         Me.PictureBox3.TabIndex = 5
         Me.PictureBox3.TabStop = False
+        '
+        'Button2
+        '
+        Me.Button2.Location = New System.Drawing.Point(28, 64)
+        Me.Button2.Name = "Button2"
+        Me.Button2.Size = New System.Drawing.Size(93, 53)
+        Me.Button2.TabIndex = 6
+        Me.Button2.Text = "Charger référence"
+        Me.Button2.UseVisualStyleBackColor = True
+        '
+        'TextBox2
+        '
+        Me.TextBox2.Location = New System.Drawing.Point(159, 79)
+        Me.TextBox2.Name = "TextBox2"
+        Me.TextBox2.Size = New System.Drawing.Size(460, 22)
+        Me.TextBox2.TabIndex = 7
+        Me.TextBox2.Text = "C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Reference\" & _
+            "Ref.jpg"
         '
         'Form1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
-        Me.ClientSize = New System.Drawing.Size(1309, 495)
+        Me.ClientSize = New System.Drawing.Size(1311, 623)
+        Me.Controls.Add(Me.TextBox2)
+        Me.Controls.Add(Me.Button2)
         Me.Controls.Add(Me.PictureBox3)
         Me.Controls.Add(Me.PictureBox2)
         Me.Controls.Add(Me.PictureBox1)
@@ -97,5 +119,7 @@ Partial Class Form1
     Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox2 As System.Windows.Forms.PictureBox
     Friend WithEvents PictureBox3 As System.Windows.Forms.PictureBox
+    Friend WithEvents Button2 As System.Windows.Forms.Button
+    Friend WithEvents TextBox2 As System.Windows.Forms.TextBox
 
 End Class

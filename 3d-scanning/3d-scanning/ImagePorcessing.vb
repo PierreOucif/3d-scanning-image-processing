@@ -38,43 +38,53 @@
         Return NbPixel
     End Function
 
-    Public Function SubPixel(ByVal image(,) As Color)
-        Dim sub_pixel(2, GetNbPixel(image)) As Integer
-        Dim pixel As Integer = 0
+    Public Function SubPixel(ByVal image(,) As Color, ByRef Area(,) As Integer)
+        Dim sub_pixel(GetNbPixel(image), 1) As Double
+        Dim Segment As Integer = 0
 
-        For x_pixel As Integer = 0 To image.GetLength(0) - 1
-            Dim nb_pixel As Integer = 0
+        For j As Integer = Area(1, 0) To Area(1, 1)
+
+            Dim SizeSegment As Integer = 0
             Dim y_average As Integer = 0
-            Dim line As Integer = 1
-            For y_pixel As Integer = 0 To image.GetLength(1) - 1
-                If image(x_pixel, y_pixel) = Color.White Then
-                    y_average = y_average + y_pixel And nb_pixel = nb_pixel + 1 And line = 1
-                Else : line = 0
+
+            For i As Integer = Area(0, 0) To Area(0, 1)
+                If image(i, j) = Color.White Then
+                    y_average = y_average + i
+                    SizeSegment = SizeSegment + 1
+                ElseIf image(i - 1, j) = Color.White Then
+                    If SizeSegment > 0 Then
+                        sub_pixel(Segment, 0) = j
+                        sub_pixel(Segment, 1) = y_average / SizeSegment
+                        Segment = Segment + 1
+                    End If
+
                 End If
             Next
-            If line = 0 Then
-                pixel = pixel + 1
-                sub_pixel(pixel, 0) = x_pixel
-                sub_pixel(pixel, 1) = y_average / nb_pixel
+        Next
+        Dim Pixel(Segment - 1, 1) As Double
+        For i As Integer = 0 To Segment - 1
+            If sub_pixel(i, 0) > 0 And sub_pixel(i, 1) > 0 Then
+                Pixel(i, 0) = sub_pixel(i, 0)
+                Pixel(i, 1) = sub_pixel(i, 1)
             End If
         Next
-        Return sub_pixel
+        Return Pixel
     End Function
 
     Public Function OrthogonalProjection(ByVal laserpattern(,) As Integer)
         Return Nothing
     End Function
     Public Function TableOfPoints(ByVal image(,) As Color)
-        Dim Table(GetNbPixel(image)) As Point
-        Dim NbPoints As Integer = 0
-        Dim Pixel(,) As Integer = SubPixel(image)
-        For i As Integer = 0 To image.GetLength(1) - 1
-            For j As Integer = 0 To image.GetLength(0) - 1
-                If image(i, j) = Color.White Then
-                    Table(NbPoints) = New Point(i, j)
-                    NbPoints = NbPoints + 1
-                End If
-            Next
+        Dim Area(1, 1) As Integer
+        Area(0, 0) = 150
+        Area(0, 1) = 350
+        Area(1, 0) = 50
+        Area(1, 1) = 350
+        Dim Pixel(,) As Double = SubPixel(image, Area)
+        Dim Table(Pixel.GetLength(0) - 1) As Point
+
+        For i As Integer = 0 To Pixel.GetLength(0) - 1
+            Table(i) = New Point(Pixel(i, 1), Pixel(i, 0))
         Next
         Return Table
     End Function
