@@ -127,16 +127,17 @@
 
         Return Matrice
     End Function
-    Public Sub AfficherImage(ByRef TextBox As TextBox, ByRef PictureBoxImage As PictureBox, ByRef PictureBoxDrawing As PictureBox)
+    Public Sub AfficherImage(ByRef TextBox As TextBox, ByRef PictureBoxImage As PictureBox, ByRef PictureBoxBW As PictureBox, ByRef PictureBoxDrawing As PictureBox)
         ' Test de l'existance du fichier proposé
         Dim Path As String = TextBox.Text
+        Dim SquareSize As Integer = 250
         If IO.File.Exists(Path) Then
             ' Instantiation du chrono pour comparaisons
 
             Dim ImageAAnalyser(,) As Color = Nothing
             Dim ImageAAfficher(,) As Color = Nothing
             ImageAAnalyser = GenererMatriceFromJPGFastOne(Path)
-            ImageAAfficher = dll.agrandissementaupproche(500, 500, ImageAAfficher)
+            ImageAAfficher = dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAfficher)
             If Not (ImageAAnalyser Is Nothing) Then
                 ' Format and display the TimeSpan value.
 
@@ -150,7 +151,7 @@
                 Next
 
                 PictureBoxImage.Image = image
-                PictureBoxDrawing.Image = LaserRecognitionBitMap(ImageAAnalyser)
+                PictureBoxBW.Image = LaserRecognitionBitMap(ImageAAnalyser)
                 Drawing = PictureBoxDrawing.CreateGraphics
                 Drawing.DrawLines(BlackPen, TableOfPoints(LaserRecognitionColor(ImageAAfficher)))
             End If
