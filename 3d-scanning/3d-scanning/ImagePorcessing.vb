@@ -2,15 +2,15 @@
 
     Dim dll As New DimensionnementImage.GestionImage
     Dim Drawing As Graphics
-    Dim BlackPen As New Pen(Color.Black)
-    Dim RedThreshold As Integer = 230
-    Dim GBThreshold As Integer = 200
+    Dim BlackPen As New Pen(Color.Black, 2)
+    Dim RedThreshold As Integer = 250
+    Dim GBThreshold As Integer = 100
 
     Public Function LaserRecognitionBitMap(ByVal image(,) As Color)
         Dim imagetoget = New Bitmap(image.GetLength(0), image.GetLength(1))
         For i As Integer = 0 To image.GetLength(0) - 1
             For j As Integer = 0 To image.GetLength(1) - 1
-                If image(i, j).R >= RedThreshold And image(i, j).G >= GBThreshold And image(i, j).B >= GBThreshold Then
+                If image(i, j).R >= RedThreshold Then
                     imagetoget.SetPixel(i, j, Color.White)
                 Else : imagetoget.SetPixel(i, j, Color.Black)
                 End If
@@ -21,7 +21,7 @@
     Public Function LaserRecognitionColor(ByVal image(,) As Color)
         For i As Integer = 0 To image.GetLength(0) - 1
             For j As Integer = 0 To image.GetLength(1) - 1
-                If image(i, j).R >= RedThreshold And image(i, j).G >= GBThreshold And image(i, j).B >= GBThreshold Then
+                If image(i, j).R >= RedThreshold Then
                     image(i, j) = Color.White
                 Else : image(i, j) = Color.Black
                 End If
@@ -135,17 +135,14 @@
         Dim ImageAAnalyser(,) As Color = Nothing
         Dim ImageAAfficher(,) As Color = Nothing
         If IO.File.Exists(Path) Then
-            ' Instantiation du chrono pour comparaisons
 
             
             ImageAAnalyser = GenererMatriceFromJPGFastOne(Path)
             ImageAAfficher = dll.agrandissementaupproche(SquareSize, SquareSize, ImageAAnalyser)
             If Not (ImageAAnalyser Is Nothing) Then
-                ' Format and display the TimeSpan value.
-
 
                 Dim image = New Bitmap(ImageAAfficher.GetLength(0), ImageAAfficher.GetLength(1))
-                ' Utilisation de la solution GetPixel qui est très très lente...
+
                 For colonne As Integer = 0 To PictureBoxImage.Width - 1
                     For ligne As Integer = 0 To PictureBoxImage.Height - 1
                         image.SetPixel(colonne, ligne, ImageAAfficher(colonne, ligne))
@@ -166,14 +163,15 @@
         Dim centroid(1) As Double
         Dim Area(1, 1) As Integer
         Dim nb As Double = 0
+        Dim imageBW(,) As Color = LaserRecognitionColor(image)
         Area(0, 0) = 0
         Area(0, 1) = image.GetLength(0) - 1
         Area(1, 0) = 0
         Area(1, 1) = image.GetLength(1) - 1
-        Dim table(,) As Double = SubPixel(image, Area)
+        Dim table(,) As Double = SubPixel(imageBW, Area)
         For i As Integer = 0 To table.GetLength(0) - 1
             centroid(0) += table(i, 0)
-            centroid(1) += table(i, 0)
+            centroid(1) += table(i, 1)
             nb += 1
         Next
         centroid(0) /= nb
