@@ -243,4 +243,10 @@
         Next
         Return PointImage
     End Function
+    Public Function GetImageFromFolder(ByVal PathName As String)
+        Dim result As IEnumerable
+        result = IO.Directory.GetFiles(PathName)
+        Dim a As String = result(2)
+        Return result
+    End Function
 End Class

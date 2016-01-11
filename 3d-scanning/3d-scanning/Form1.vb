@@ -26,5 +26,9 @@
     End Sub
 
 
+    
+    Private Sub Button4_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles Button4.Click
+        Dim Path As IEnumerable = ImageProcessing.GetImageFromFolder(TextBox5.Text)
+    End Sub
 End Class
 

@@ -29,6 +29,8 @@ Partial Class Form1
         Me.PictureBox3 = New System.Windows.Forms.PictureBox()
         Me.TabPage2 = New System.Windows.Forms.TabPage()
         Me.GroupBox2 = New System.Windows.Forms.GroupBox()
+        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TextBox4 = New System.Windows.Forms.TextBox()
         Me.Button3 = New System.Windows.Forms.Button()
         Me.Label7 = New System.Windows.Forms.Label()
         Me.Label6 = New System.Windows.Forms.Label()
@@ -53,8 +55,8 @@ Partial Class Form1
         Me.TabPage1 = New System.Windows.Forms.TabPage()
         Me.TabControl1 = New System.Windows.Forms.TabControl()
         Me.TabPage3 = New System.Windows.Forms.TabPage()
-        Me.TextBox4 = New System.Windows.Forms.TextBox()
-        Me.Label8 = New System.Windows.Forms.Label()
+        Me.TextBox5 = New System.Windows.Forms.TextBox()
+        Me.Button4 = New System.Windows.Forms.Button()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox2, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.PictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
@@ -66,6 +68,7 @@ Partial Class Form1
         CType(Me.PictureBox4, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.TabPage1.SuspendLayout()
         Me.TabControl1.SuspendLayout()
+        Me.TabPage3.SuspendLayout()
         Me.SuspendLayout()
         '
         'Button1
@@ -83,7 +86,8 @@ Partial Class Form1
         Me.TextBox1.Name = "TextBox1"
         Me.TextBox1.Size = New System.Drawing.Size(129, 22)
         Me.TextBox1.TabIndex = 1
-        Me.TextBox1.Text = "C:\Users\Ilysse\Desktop\Computer Sciences\Projet Sysin\Piece 1 - Low Res\1.jpg"
+        Me.TextBox1.Text = "C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Piece 1 - " & _
+            "Low Res\1.jpg"
         '
         'PictureBox1
         '
@@ -143,6 +147,24 @@ Partial Class Form1
         Me.GroupBox2.TabIndex = 9
         Me.GroupBox2.TabStop = False
         Me.GroupBox2.Text = "Couleurs limites"
+        '
+        'Label8
+        '
+        Me.Label8.AutoSize = True
+        Me.Label8.Location = New System.Drawing.Point(13, 105)
+        Me.Label8.Name = "Label8"
+        Me.Label8.Size = New System.Drawing.Size(41, 17)
+        Me.Label8.TabIndex = 19
+        Me.Label8.Text = "Delta"
+        '
+        'TextBox4
+        '
+        Me.TextBox4.Location = New System.Drawing.Point(69, 102)
+        Me.TextBox4.Name = "TextBox4"
+        Me.TextBox4.Size = New System.Drawing.Size(62, 22)
+        Me.TextBox4.TabIndex = 15
+        Me.TextBox4.Text = "25"
+        Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'Button3
         '
@@ -366,6 +388,8 @@ Partial Class Form1
         '
         'TabPage3
         '
+        Me.TabPage3.Controls.Add(Me.TextBox5)
+        Me.TabPage3.Controls.Add(Me.Button4)
         Me.TabPage3.Location = New System.Drawing.Point(4, 25)
         Me.TabPage3.Name = "TabPage3"
         Me.TabPage3.Size = New System.Drawing.Size(1399, 868)
@@ -373,23 +397,23 @@ Partial Class Form1
         Me.TabPage3.Text = "TabPage3"
         Me.TabPage3.UseVisualStyleBackColor = True
         '
-        'TextBox4
+        'TextBox5
         '
-        Me.TextBox4.Location = New System.Drawing.Point(69, 102)
-        Me.TextBox4.Name = "TextBox4"
-        Me.TextBox4.Size = New System.Drawing.Size(62, 22)
-        Me.TextBox4.TabIndex = 15
-        Me.TextBox4.Text = "25"
-        Me.TextBox4.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.TextBox5.Location = New System.Drawing.Point(242, 59)
+        Me.TextBox5.Name = "TextBox5"
+        Me.TextBox5.Size = New System.Drawing.Size(450, 22)
+        Me.TextBox5.TabIndex = 1
+        Me.TextBox5.Text = "C:\Users\Ilysse\Desktop\Computer Sciences\3d-scanning-image-processing\Piece 1 - " & _
+            "Low Res"
         '
-        'Label8
+        'Button4
         '
-        Me.Label8.AutoSize = True
-        Me.Label8.Location = New System.Drawing.Point(13, 105)
-        Me.Label8.Name = "Label8"
-        Me.Label8.Size = New System.Drawing.Size(41, 17)
-        Me.Label8.TabIndex = 19
-        Me.Label8.Text = "Delta"
+        Me.Button4.Location = New System.Drawing.Point(24, 27)
+        Me.Button4.Name = "Button4"
+        Me.Button4.Size = New System.Drawing.Size(164, 91)
+        Me.Button4.TabIndex = 0
+        Me.Button4.Text = "Button4"
+        Me.Button4.UseVisualStyleBackColor = True
         '
         'Form1
         '
@@ -414,6 +438,8 @@ Partial Class Form1
         Me.TabPage1.ResumeLayout(False)
         Me.TabPage1.PerformLayout()
         Me.TabControl1.ResumeLayout(False)
+        Me.TabPage3.ResumeLayout(False)
+        Me.TabPage3.PerformLayout()
         Me.ResumeLayout(False)
 
     End Sub
@@ -450,5 +476,7 @@ Partial Class Form1
     Friend WithEvents TextBox9 As System.Windows.Forms.TextBox
     Friend WithEvents Label8 As System.Windows.Forms.Label
     Friend WithEvents TextBox4 As System.Windows.Forms.TextBox
+    Friend WithEvents TextBox5 As System.Windows.Forms.TextBox
+    Friend WithEvents Button4 As System.Windows.Forms.Button
 
 End Class
