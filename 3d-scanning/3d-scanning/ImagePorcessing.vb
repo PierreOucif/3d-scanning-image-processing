@@ -96,12 +96,6 @@
         Return Pixel
     End Function
 
-    Public Function OrthogonalProjection(ByVal laserpattern(,) As Integer)
-        Dim Angle As Double = 20
-
-
-        Return Nothing
-    End Function
     Public Function TableOfPoints(ByVal image(,) As Color)
         Dim Area(1, 1) As Integer
         Area(0, 0) = 0
@@ -231,5 +225,22 @@
         centroid(0) /= nb
         centroid(1) /= nb
         Return centroid
+    End Function
+    Public Function CameraToObjet(ByVal image(,) As Color, ByVal Distance As Double, ByRef Angle As Double)
+        Dim Area(1, 1) As Integer
+        Area(0, 0) = 0
+        Area(0, 1) = image.GetLength(0) - 1
+        Area(1, 0) = 0
+        Area(1, 1) = image.GetLength(1) - 1
+        Dim PointCamera(,) As Double = SubPixel(LaserRecognitionColor(image), Area)
+        Dim PointImage(PointCamera.GetLength(0) - 1, 1) As Double
+        Dim TranslationVector(1) As Double
+        TranslationVector(0) = Distance
+        TranslationVector(1) = Distance / Math.Tan(Angle)
+        For i As Integer = 0 To PointCamera.GetLength(0) - 1
+            PointImage(i, 0) = PointCamera(i, 0) * Math.Cos(Angle) - PointCamera(i, 1) * Math.Sin(Angle) + TranslationVector(0)
+            PointImage(i, 1) = PointCamera(i, 0) * Math.Sin(Angle) + PointCamera(i, 1) * Math.Cos(Angle) + TranslationVector(1)
+        Next
+        Return PointImage
     End Function
 End Class
